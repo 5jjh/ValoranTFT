@@ -1,7 +1,9 @@
 # Creating agent objects.
 
-class Agent(object):
+
+class Agent:
     def __init__(self, name, role, tier, level):
+        super().__init__()
         self.name = name
         self.role = role
         self.tier = tier

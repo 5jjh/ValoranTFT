@@ -30,7 +30,6 @@ class Game(object):
             random_agent3 = Spl[2][randint(0, max_idx)]
             p.bench.buy(random_agent1), p.bench.buy(random_agent2), p.bench.buy(random_agent3)
             p.gold += 10
-            p.bench.print_bench(p.username)
 
     def set_stage(self) -> None:
         return

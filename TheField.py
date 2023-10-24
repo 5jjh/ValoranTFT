@@ -9,6 +9,12 @@ class Field(object):
     def __init__(self):
         self.field = {}
 
+    def total_power(self) -> int:
+        power = 0
+        for agent in self.field.keys():
+            power += agent.level * agent.tier
+        return power
+
     def list_agents(self) -> str:
         result = ""
         for agent in self.field.keys():
@@ -16,6 +22,8 @@ class Field(object):
         return result
 
     def add_agent(self, agent: Agent) -> None:
+        if agent is None:
+            return
         if agent.name in self.field.keys():
             agent.name = agent.name + ' 2'
         self.field[agent.name] = agent.tier * agent.level

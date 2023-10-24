@@ -1,5 +1,5 @@
 from TheField import Field
-from TheBench import Bench
+from TheBench import Bench, EmptySlot
 from TheStore import Store
 # Keeps track of the player's gold, level, and HP
 
@@ -16,7 +16,6 @@ class Player(object):
         self.result = None
         self.past_result = None
         self.streak = 0
-
 
     def increase_level(self) -> None:
         self.level += 1
@@ -39,3 +38,20 @@ class Player(object):
             counter = 1
         self.past_result = self.result
         return counter
+
+    def bench_to_field(self) -> None:
+        curr = self.bench.head
+        while curr is not None:
+            if curr.agent is EmptySlot:
+                curr = curr.next
+            else:
+                ans = input(f"Would you like to move: {curr.agent.name} with power {curr.agent.level * curr.agent.tier}"
+                            f" to your field?")
+                if ans.lower() == 'y':
+                    self.field.add_agent(curr)
+                    self.bench.remove(curr)
+                    curr = curr.next
+                elif ans.lower() == 'n':
+                    curr = curr.next
+                else:
+                    print(f"Not a valid input. Please enter 'Y' or 'N'")

@@ -5,7 +5,7 @@ from AgentLists import all_agents
 
 class NewSlot:
     def __init__(self, agent=Agent, next=None) -> None:
-        self.agent = agent
+        self.agent = Agent
         self.next = next
 
 
